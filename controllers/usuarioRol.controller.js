@@ -8,7 +8,13 @@ module.exports = class paisController {
 
   async get (req, res, next) {
     const id = req.params.id
-    const usuarioRol = await UsuarioRol.findByPk(id)
+    const usuarioRol = await UsuarioRol.findAll(
+      {
+        where: {
+          IdUsuario: id
+        }
+      }
+    )
     res.send(usuarioRol)
   }
 

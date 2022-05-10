@@ -24,6 +24,7 @@ module.exports = class equipamientoController {
       fechaEntrada,
       fechaSalida,
       estado,
+      cantPersonas,
       idservicio,
       idhabitacion,
       idusuario,
@@ -33,6 +34,7 @@ module.exports = class equipamientoController {
     if (!fechaEntrada) return res.status(400).send({ message: 'La fecha de entrada es requerida' })
     if (!fechaSalida) return res.status(400).send({ message: 'La fecha de salida es requerida' })
     if (!estado) return res.status(400).send({ message: 'El estado es requerido' })
+    if (!cantPersonas) return res.status(400).send({ message: 'La cantidad de personas es requerida' })
     if (!idhabitacion) return res.status(400).send({ message: 'La habitacion es requerida' })
     if (!idusuario) return res.status(400).send({ message: 'El usuario es requerido' })
     const reserva = await Reserva.update(
@@ -40,6 +42,7 @@ module.exports = class equipamientoController {
         fechaEntrada,
         fechaSalida,
         estado,
+        cantPersonas,
         idservicio,
         idhabitacion,
         idusuario,
@@ -59,6 +62,7 @@ module.exports = class equipamientoController {
       fechaEntrada,
       fechaSalida,
       estado,
+      cantPersonas,
       idservicio,
       idhabitacion,
       idusuario,
@@ -67,12 +71,14 @@ module.exports = class equipamientoController {
     if (!fechaEntrada) return res.status(400).send({ message: 'La fecha de entrada es requerida' })
     if (!fechaSalida) return res.status(400).send({ message: 'La fecha de salida es requerida' })
     if (!estado) return res.status(400).send({ message: 'El estado es requerido' })
+    if (!cantPersonas) return res.status(400).send({ message: 'La cantidad de personas es requerida' })
     if (!idhabitacion) return res.status(400).send({ message: 'La habitacion es requerida' })
     if (!idusuario) return res.status(400).send({ message: 'El usuario es requerido' })
     const reserva = await Reserva.create({
       fechaEntrada,
       fechaSalida,
       estado,
+      cantPersonas,
       idservicio,
       idhabitacion,
       idusuario,

@@ -33,6 +33,8 @@ const reservaRoutes = require('./routes/reserva.routes')
 const metodopagoRoutes = require('./routes/metodoPago.routes')
 const facturaRoutes = require('./routes/factura.routes')
 
+const authenticationAdminRoutes = require('./routes/authentificacionAdmin.routes')
+
 app.use(
   cors({
     origin: ['http://localhost:4000'],
@@ -46,6 +48,7 @@ app.get('/', (req, res) => {
   res.send('Up and running')
 })
 
+app.use('/authenticacionAdmin', authenticationAdminRoutes)
 app.use('/authentication', authenticationRoutes)
 app.use('/bookings', bookingsRoutes)
 app.use('/categories', categoriesRoutes)

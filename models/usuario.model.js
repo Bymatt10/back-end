@@ -14,6 +14,7 @@ const Usuario = connection.sequelize.define(
     email: Sequelize.STRING,
     password: Sequelize.STRING,
     estado: Sequelize.BOOLEAN,
+    trabajador: Sequelize.INTEGER,
     idEntidad: Sequelize.INTEGER
   },
   {

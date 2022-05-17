@@ -26,6 +26,7 @@ module.exports = class paisController {
       email,
       password,
       estado,
+      trabajador,
       idEntidad
     } = req.body
     if (!id) return res.status(400).send({ message: 'id es requerido' })
@@ -42,6 +43,7 @@ module.exports = class paisController {
         email,
         password: hash,
         estado,
+        trabajador,
         idEntidad
       },
       {
@@ -59,6 +61,7 @@ module.exports = class paisController {
       email,
       password,
       estado,
+      trabajador,
       idEntidad
     } = req.body
     if (!nombre) return res.status(400).send({ message: 'Nombre es requerido' })
@@ -73,6 +76,7 @@ module.exports = class paisController {
       email,
       password: hash,
       estado,
+      trabajador,
       idEntidad
     })
     res.status(201).send(usuario)

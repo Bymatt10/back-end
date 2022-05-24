@@ -1,4 +1,5 @@
 const Reserva = require('../models/reservas.model')
+const ReservaEstado = require('../models/reservasEstado.model')
 
 module.exports = class equipamientoController {
   async list (req, res, next) {
@@ -16,6 +17,25 @@ module.exports = class equipamientoController {
       }
     )
     res.send(reserva)
+  }
+
+  async cambioEstado (req, res) {
+    const id = req.params.id
+    const {
+      estado
+    } = req.body
+    if (!id) return res.status(400).send({ message: 'id es requerido' })
+    const reserva = await ReservaEstado.update(
+      {
+        estado
+      },
+      {
+        where: {
+          idreserva: id
+        }
+      }
+    )
+    res.status(204).send(reserva)
   }
 
   async update (req, res, next) {
@@ -89,12 +109,21 @@ module.exports = class equipamientoController {
 
   async delete (req, res, next) {
     const id = req.params.id
-
-    const destroyResult = await Reserva.destroy({
-      where: {
-        idreserva: id
+    const {
+      estado
+    } = req.body
+    if (!id) return res.status(400).send({ message: 'id es requerido' })
+    // if (!estado) return res.status(400).send({ message: 'El estado es requerido' })
+    const destroyResult = await Reserva.update(
+      {
+        estado
+      },
+      {
+        where: {
+          idreserva: id
+        }
       }
-    })
+    )
     if (destroyResult) {
       return res.sendStatus(204)
     }

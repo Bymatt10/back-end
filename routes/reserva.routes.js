@@ -10,6 +10,8 @@ router.get('/', reserva.list)
 router.get('/:id', reserva.get)
 /* Update category */
 router.put('/update/:id', reserva.update)
+
+router.put('/cambioEstado/:id', reserva.cambioEstado)
 /* Create category */
 router.post('/create', reserva.create)
 /* Delete category */

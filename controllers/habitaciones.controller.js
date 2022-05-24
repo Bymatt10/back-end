@@ -1,4 +1,5 @@
 const Habitaciones = require('../models/habitaciones.models')
+const HabitacionEstado = require('../models/habitacionesEstado.model')
 
 module.exports = class equipamientoController {
   async list (req, res, next) {
@@ -85,16 +86,48 @@ module.exports = class equipamientoController {
 
   async delete (req, res, next) {
     const id = req.params.id
-
-    const destroyResult = await Habitaciones.destroy({
-      where: {
-        idhabitacion: id
+    const {
+      estado
+    } = req.body
+    if (!id) return res.status(400).send({ message: 'id es requerido' })
+    const destroyResult = await HabitacionEstado.update(
+      {
+        estado
+      },
+      {
+        where: {
+          idhabitacion: id
+        }
       }
-    })
+    )
     if (destroyResult) {
       return res.sendStatus(204)
     }
 
     res.status(500)
   }
+
+  // async delete (req, res, next) {
+  //   const id = req.params.id
+  //   const {
+  //     estado
+  //   } = req.body
+  //   if (!id) return res.status(400).send({ message: 'id es requerido' })
+  //   // if (!estado) return res.status(400).send({ message: 'El estado es requerido' })
+  //   const destroyResult = await Reserva.update(
+  //     {
+  //       estado
+  //     },
+  //     {
+  //       where: {
+  //         idreserva: id
+  //       }
+  //     }
+  //   )
+  //   if (destroyResult) {
+  //     return res.sendStatus(204)
+  //   }
+
+  //   res.status(500)
+  // }
 }

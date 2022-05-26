@@ -2,9 +2,23 @@ const Habitaciones = require('../models/habitaciones.models')
 const HabitacionEstado = require('../models/habitacionesEstado.model')
 
 module.exports = class equipamientoController {
-  async list (req, res, next) {
+  async obtenerTodos (req, res, next) {
     const list = await Habitaciones.findAll()
     res.send(list)
+  }
+
+  async list (req, res, next) {
+    // const list = await Habitaciones.findAll()
+    // res.send(list)
+    const disponible = 'Disponible'
+    const habitaciones = await Habitaciones.findAll(
+      {
+        where: {
+          estado: disponible
+        }
+      }
+    )
+    res.send(habitaciones)
   }
 
   async get (req, res, next) {

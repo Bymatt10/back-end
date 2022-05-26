@@ -6,6 +6,8 @@ const habitacion = new Habitacion()
 
 /* Get categories list */
 router.get('/', habitacion.list)
+
+router.get('/obtener', habitacion.obtenerTodos)
 /* Get category by id */
 router.get('/:id', habitacion.get)
 /* Update category */

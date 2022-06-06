@@ -2,22 +2,26 @@ const Sequelize = require('sequelize')
 const Connection = require('./connection')
 
 const connection = new Connection()
-const ReservaEstado = connection.sequelize.define(
-  'ReservaEstado',
+const Compas = connection.sequelize.define(
+  'Compas',
   {
-    idreserva: {
+    idAcompañante: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true
     },
-    estado: Sequelize.NUMBER
+    Nombre: Sequelize.STRING,
+    Edad: Sequelize.NUMBER,
+    Identificacion: Sequelize.STRING,
+    Telefono: Sequelize.STRING,
+    idusuario: Sequelize.NUMBER
   },
   {
-    tableName: 'reserva',
+    tableName: 'acompañantes',
     timestamps: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at'
   }
 )
 
-module.exports = ReservaEstado
+module.exports = Compas

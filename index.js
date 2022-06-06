@@ -32,6 +32,7 @@ const servicioRoutes = require('./routes/servicios.routes')
 const reservaRoutes = require('./routes/reserva.routes')
 const metodopagoRoutes = require('./routes/metodoPago.routes')
 const facturaRoutes = require('./routes/factura.routes')
+const CompasUsuarios = require('./routes/Acompañantes.routes')
 
 const authenticationAdminRoutes = require('./routes/authentificacionAdmin.routes')
 
@@ -75,6 +76,7 @@ app.use('/servicios', servicioRoutes)
 app.use('/reserva', reservaRoutes)
 app.use('/metodoPago', metodopagoRoutes)
 app.use('/factura', facturaRoutes)
+app.use('/acompas', CompasUsuarios)
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)

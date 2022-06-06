@@ -12,7 +12,7 @@ const Reserva = connection.sequelize.define(
     },
     fechaEntrada: Sequelize.DATE,
     fechaSalida: Sequelize.DATE,
-    estado: Sequelize.BOOLEAN,
+    estado: Sequelize.NUMBER,
     cantPersonas: Sequelize.INTEGER,
     idservicio: Sequelize.INTEGER,
     idhabitacion: Sequelize.INTEGER,

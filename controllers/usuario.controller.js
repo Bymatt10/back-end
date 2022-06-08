@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt')
 const Usuario = require('../models/usuario.model')
+const UsuarioEst = require('../models/usuarioEstado.model')
 
 module.exports = class paisController {
   async list (req, res, next) {
@@ -84,12 +85,20 @@ module.exports = class paisController {
 
   async delete (req, res, next) {
     const id = req.params.id
-
-    const destroyResult = await Usuario.destroy({
-      where: {
-        idUsuario: id
+    const {
+      estado
+    } = req.body
+    if (!id) return res.status(400).send({ message: 'id es requerido' })
+    const destroyResult = await UsuarioEst.update(
+      {
+        estado
+      },
+      {
+        where: {
+          idUsuario: id
+        }
       }
-    })
+    )
     if (destroyResult) {
       return res.sendStatus(204)
     }

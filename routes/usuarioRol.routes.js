@@ -13,6 +13,6 @@ router.put('/update/:id', usuarioRol.update)
 /* Create category */
 router.post('/create', usuarioRol.create)
 /* Delete category */
-router.delete('/delete/:id', usuarioRol.delete)
+router.put('/cambioEstado/:id', usuarioRol.delete)
 
 module.exports = router

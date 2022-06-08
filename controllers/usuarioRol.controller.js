@@ -1,4 +1,5 @@
 const UsuarioRol = require('../models/usuarioRol.model')
+const UsuarioRolEst = require('../models/usuarioRolEstado.model')
 
 module.exports = class paisController {
   async list (req, res, next) {
@@ -58,9 +59,6 @@ module.exports = class paisController {
       idRol,
       idUsuario
     } = req.body
-    if (!estado) return res.status(400).send({ message: 'Estado es requerido' })
-    if (!trabajador) return res.status(400).send({ message: 'Trabajador es requerido' })
-    if (!cliente) return res.status(400).send({ message: 'cliente es requerido' })
     if (!idRol) return res.status(400).send({ message: 'Rol es requerido' })
     if (!idUsuario) return res.status(400).send({ message: 'Usuario es requerido' })
     const usuariorol = await UsuarioRol.create({
@@ -73,14 +71,45 @@ module.exports = class paisController {
     res.status(201).send(usuariorol)
   }
 
+  // async delete (req, res, next) {
+  //   const id = req.params.id
+  //   const {
+  //     estado
+  //   } = req.body
+  //   if (!id) return res.status(400).send({ message: 'id es requerido' })
+  //   const destroyResult = await UsuarioRolEst.update(
+  //     {
+  //       estado
+  //     },
+  //     {
+  //       where: {
+  //         idUsuarioRol: id
+  //       }
+  //     }
+  //   )
+  //   if (destroyResult) {
+  //     return res.sendStatus(204)
+  //   }
+
+  //   res.status(500)
+  // }
+
   async delete (req, res, next) {
     const id = req.params.id
-
-    const destroyResult = await UsuarioRol.destroy({
-      where: {
-        idUsuarioRol: id
+    const {
+      estado
+    } = req.body
+    if (!id) return res.status(400).send({ message: 'id es requerido' })
+    const destroyResult = await UsuarioRolEst.update(
+      {
+        estado
+      },
+      {
+        where: {
+          idUsuarioRol: id
+        }
       }
-    })
+    )
     if (destroyResult) {
       return res.sendStatus(204)
     }
